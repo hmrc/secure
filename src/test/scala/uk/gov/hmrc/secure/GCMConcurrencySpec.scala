@@ -16,31 +16,49 @@
 
 package uk.gov.hmrc.secure
 
+import java.util
 import java.util.concurrent.CountDownLatch
 
 import org.scalatest.{Matchers, WordSpec}
+
+import scala.collection.mutable.ListBuffer
 
 class GCMConcurrencySpec extends WordSpec with Matchers {
 
   "GCM" should {
 
     "be thread safe" in {
+
+      val testResult = new TestResult
+
       val latch = new CountDownLatch(1)
 
       val wrapper = new GCMEncrypterDecrypter("1234567890123456".getBytes, "additional".getBytes)
 
+      val threads = new ListBuffer[Thread]()
+
       for(i <- 0 to 500) {
-        val t1 = new GCMEncrypterDecrypterThread(latch, i, wrapper)
-        new Thread(t1).start()
+        val thread = new Thread(new GCMEncrypterDecrypterThread(latch, i, wrapper, testResult))
+        threads += thread
+        thread.start()
       }
 
       latch.countDown() // inform all the threads to start.
 
+      threads.foreach(_.join)
+
+      println("finished")
+
+      testResult.failed shouldBe false
     }
 
   }
 
-  private class GCMEncrypterDecrypterThread(val latch: CountDownLatch, val Id: Int, val wrapper: GCMEncrypterDecrypter ) extends Runnable {
+  private class TestResult {
+    var failed: Boolean = false
+  }
+
+  private class GCMEncrypterDecrypterThread(val latch: CountDownLatch, val Id: Int, val wrapper: GCMEncrypterDecrypter, val result: TestResult ) extends Runnable {
 
     override def run() {
 
@@ -54,8 +72,11 @@ class GCMConcurrencySpec extends WordSpec with Matchers {
       try {
         val response = wrapper.encrypt(valueToEncrypt.getBytes)
         val decrypt = wrapper.decrypt(response.getBytes)
-
-        valueToEncrypt.getBytes shouldBe decrypt.getBytes
+        val equal = util.Arrays.equals(valueToEncrypt.getBytes, decrypt.getBytes)
+        println(s"Encrypted/Decrypted successfully: $equal")
+        if(!equal) {
+          result.failed = true
+        }
       } catch {
         case e: Exception => e.printStackTrace()
       }
