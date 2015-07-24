@@ -3,7 +3,7 @@ secure
 
 [![Build Status](https://travis-ci.org/hmrc/secure.svg)](https://travis-ci.org/hmrc/secure) [ ![Download](https://api.bintray.com/packages/hmrc/releases/secure/images/download.svg) ](https://bintray.com/hmrc/releases/secure/_latestVersion)
 
-Simple library wrapping java security/crypto framework for encyption/decryption and signing/signature validation
+Simple library wrapping java security/crypto framework for encyption/decryption and signing/signature validation.
 
 ### Installing
 
