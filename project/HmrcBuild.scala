@@ -47,6 +47,7 @@ object HmrcBuild extends Build {
         Resolver.typesafeRepo("releases")
       )
     )
+    .disablePlugins(sbt.plugins.JUnitXmlReportPlugin)
 }
 
 private object Dependencies {
