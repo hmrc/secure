@@ -46,7 +46,7 @@ class SignatureSpec extends WordSpec with Matchers with KeyProvider {
     val messageDigest = MessageDigest.getInstance("SHA-1")
     messageDigest.update(data.getBytes(StandardCharsets.UTF_8))
     val digest = messageDigest.digest
-    BasicBase64.encodeString(digest)
+    BasicBase64.encodeToString(digest)
   }
 
 }

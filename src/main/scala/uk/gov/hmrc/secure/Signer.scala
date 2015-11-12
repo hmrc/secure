@@ -28,7 +28,7 @@ class Signer(val privateKey: PrivateKey) {
       val signature = Signature.getInstance(algorithm.value())
       signature.initSign(privateKey)
       signature.update(data.getBytes(UTF_8))
-      BasicBase64.encodeString(signature.sign)
+      BasicBase64.encodeToString(signature.sign)
     } catch {
       case nsae: NoSuchAlgorithmException => throw new SecurityException("Algorithm '" + algorithm.value() + "' is not supported", nsae)
       case ike: InvalidKeyException => throw new SecurityException("The private key is invalid", ike)

@@ -40,7 +40,7 @@ trait Encrypter {
     try {
       val cipher: Cipher = Cipher.getInstance(algorithm)
       cipher.init(Cipher.ENCRYPT_MODE, key, cipher.getParameters)
-      BasicBase64.encodeString(cipher.doFinal(data))
+      BasicBase64.encodeToString(cipher.doFinal(data))
     }
     catch {
       case e: Exception => throw new SecurityException("Failed encrypting data", e)

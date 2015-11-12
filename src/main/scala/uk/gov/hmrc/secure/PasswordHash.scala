@@ -52,7 +52,7 @@ class PasswordHash(hashByteSize: Int, pbkdf2Iterations: Int) {
   @throws(classOf[GeneralSecurityException])
   protected def hashWithSalt(salt: Salt, password: String): Scrambled = {
     val bytes = pbkdf2(password.toCharArray, BasicBase64.decode(salt.value))
-    Scrambled(BasicBase64.encodeString(bytes))
+    Scrambled(BasicBase64.encodeToString(bytes))
   }
 
   /** Gets a Hasher for the current PasswordHash. */
@@ -91,7 +91,7 @@ object PasswordHash {
     val random = new SecureRandom
     val bytes = new Array[Byte](saltByteSize)
     random.nextBytes(bytes)
-    Salt(BasicBase64.encodeString(bytes))
+    Salt(BasicBase64.encodeToString(bytes))
   }
 
   /**

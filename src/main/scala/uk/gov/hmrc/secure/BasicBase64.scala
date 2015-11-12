@@ -27,15 +27,15 @@ object BasicBase64 {
 
   def encode(bytes: Array[Byte]): Array[Byte] = java.util.Base64.getEncoder.encode(bytes)
 
-  def encodeString(string: String) = new String(encode(string), UTF_8)
+  def encodeToString(string: String) = new String(encode(string), UTF_8)
 
-  def encodeString(bytes: Array[Byte]) = new String(encode(bytes), UTF_8)
+  def encodeToString(bytes: Array[Byte]) = new String(encode(bytes), UTF_8)
 
   def decode(string: String): Array[Byte] = decode(string.getBytes(UTF_8))
 
   def decode(bytes: Array[Byte]): Array[Byte] = java.util.Base64.getDecoder.decode(bytes)
 
-  def decodeString(string: String) = new String(decode(string), UTF_8)
+  def decodeToString(string: String) = new String(decode(string), UTF_8)
 
-  def decodeString(bytes: Array[Byte]) = new String(decode(bytes), UTF_8)
+  def decodeToString(bytes: Array[Byte]) = new String(decode(bytes), UTF_8)
 }

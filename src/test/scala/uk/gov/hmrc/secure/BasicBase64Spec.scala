@@ -25,13 +25,13 @@ class BasicBase64Spec extends WordSpec with Matchers {
 
   "Base64" should {
     "encoded string should be different to the source string" in {
-      encodeString("0123456789") should not be "0123456789"
+      encodeToString("0123456789") should not be "0123456789"
     }
 
     "round trip should return the original" in {
-      decodeString(encodeString("0123456789")) shouldBe "0123456789"
-      decodeString(encode("0123456789")) shouldBe "0123456789"
-      decodeString(encode("0123456789".getBytes(UTF_8))) shouldBe "0123456789"
+      decodeToString(encodeToString("0123456789")) shouldBe "0123456789"
+      decodeToString(encode("0123456789")) shouldBe "0123456789"
+      decodeToString(encode("0123456789".getBytes(UTF_8))) shouldBe "0123456789"
     }
   }
 }

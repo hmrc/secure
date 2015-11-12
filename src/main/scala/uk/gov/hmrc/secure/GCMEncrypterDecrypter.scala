@@ -39,7 +39,7 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
       val params = new AEADParameters(keyParam, MAC_SIZE, nonce, associatedText)
       val cipherText = GCM.encrypt(data, params, NONCE_SIZE)
       System.arraycopy(nonce, 0, cipherText, 0, nonce.length)
-      BasicBase64.encodeString(cipherText)
+      BasicBase64.encodeToString(cipherText)
     } catch {
       case e: Exception => throw new SecurityException("Failed decrypting data", e)
     }
