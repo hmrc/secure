@@ -18,7 +18,10 @@ package uk.gov.hmrc.secure
 
 import java.nio.charset.StandardCharsets.UTF_8
 
-/** Simple wrapper for java.util.Base64 basic mode. MIME and URL codecs are not supported. */
+/**
+ * Simple wrapper for java.util.Base64 basic mode. MIME and URL codecs are not supported.
+ * Transcodings always use UTF-8 strings.
+ */
 object BasicBase64 {
   def encode(string: String): Array[Byte] = encode(string.getBytes(UTF_8))
 

@@ -18,6 +18,7 @@ package uk.gov.hmrc.secure
 
 import java.security.Key
 import javax.crypto.Cipher
+import java.nio.charset.StandardCharsets.UTF_8
 
 trait Decrypter {
 
@@ -33,7 +34,7 @@ trait Decrypter {
 
   def decryptAsBytes(data: String): Array[Byte] = decryptAsBytes(data, key.getAlgorithm)
 
-  def decrypt(data: String, algorithm: String): String = new String(decryptAsBytes(data, algorithm))
+  def decrypt(data: String, algorithm: String): String = new String(decryptAsBytes(data, algorithm), UTF_8)
 
   def decryptAsBytes(data: String, algorithm: String): Array[Byte] = {
     try {

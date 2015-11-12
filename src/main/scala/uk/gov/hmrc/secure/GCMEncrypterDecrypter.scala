@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.secure
 
+import java.nio.charset.StandardCharsets.UTF_8
 import java.security.{NoSuchAlgorithmException, SecureRandom}
 
 import org.bouncycastle.crypto.params.{AEADParameters, KeyParameter}
@@ -55,14 +56,14 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
       System.arraycopy(rawPayload, NONCE_SIZE, encrypted, 0, encryptedPayloadSize)
       val params = new AEADParameters(keyParam, MAC_SIZE, nonce, associatedText)
       val plain = GCM.decrypt(encrypted, params)
-      new String(plain)
+      new String(plain, UTF_8)
     } catch {
       case e: Exception => throw new SecurityException("Failed decrypting data", e)
     }
   }
 
   private def validateKey() {
-    if (key == null) throw new IllegalStateException("There is no Key defined!")
+    if (key == null) throw new IllegalStateException("There is no key defined!")
     if (associatedText == null) throw new IllegalStateException("There is no Associated Text!")
   }
 
