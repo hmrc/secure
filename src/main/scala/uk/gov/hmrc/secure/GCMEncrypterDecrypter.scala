@@ -16,10 +16,8 @@
 
 package uk.gov.hmrc.secure
 
-import java.nio.charset.StandardCharsets
 import java.security.{NoSuchAlgorithmException, SecureRandom}
 
-import org.apache.commons.codec.binary.Base64
 import org.bouncycastle.crypto.params.{AEADParameters, KeyParameter}
 
 // Note: The result of the GSM encryption is {nonce:16bytes}{encrypted GCM result}. To decrypt the encrypted value, the
@@ -40,7 +38,7 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
       val params = new AEADParameters(keyParam, MAC_SIZE, nonce, associatedText)
       val cipherText = GCM.encrypt(data, params, NONCE_SIZE)
       System.arraycopy(nonce, 0, cipherText, 0, nonce.length)
-      new String(Base64.encodeBase64(cipherText), StandardCharsets.UTF_8)
+      BasicBase64.encodeString(cipherText)
     } catch {
       case e: Exception => throw new SecurityException("Failed decrypting data", e)
     }
@@ -48,13 +46,13 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
 
   def decrypt(data: Array[Byte]): String = {
     validateKey()
-    val rawPayload = Base64.decodeBase64(data)
-    val encryptedPayloadSize = rawPayload.length - NONCE_SIZE
-    val nonce = new Array[Byte](NONCE_SIZE)
-    val encrypted = new Array[Byte](encryptedPayloadSize)
-    System.arraycopy(rawPayload, 0, nonce, 0, NONCE_SIZE)
-    System.arraycopy(rawPayload, NONCE_SIZE, encrypted, 0, encryptedPayloadSize)
     try {
+      val rawPayload = BasicBase64.decode(data)
+      val encryptedPayloadSize = rawPayload.length - NONCE_SIZE
+      val nonce = new Array[Byte](NONCE_SIZE)
+      val encrypted = new Array[Byte](encryptedPayloadSize)
+      System.arraycopy(rawPayload, 0, nonce, 0, NONCE_SIZE)
+      System.arraycopy(rawPayload, NONCE_SIZE, encrypted, 0, encryptedPayloadSize)
       val params = new AEADParameters(keyParam, MAC_SIZE, nonce, associatedText)
       val plain = GCM.decrypt(encrypted, params)
       new String(plain)

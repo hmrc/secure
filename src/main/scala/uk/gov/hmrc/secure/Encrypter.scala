@@ -16,11 +16,9 @@
 
 package uk.gov.hmrc.secure
 
-import java.nio.charset.StandardCharsets
+import java.nio.charset.StandardCharsets.UTF_8
 import java.security.Key
 import javax.crypto.Cipher
-
-import org.apache.commons.codec.binary.Base64
 
 trait Encrypter {
 
@@ -34,15 +32,15 @@ trait Encrypter {
 
   def encrypt(data: Array[Byte]): String = encrypt(data, key.getAlgorithm)
 
-  def encrypt(data: String): String = encrypt(data.getBytes(StandardCharsets.UTF_8), key.getAlgorithm)
+  def encrypt(data: String): String = encrypt(data.getBytes(UTF_8), key.getAlgorithm)
 
-  def encrypt(data: String, algorithm: String): String = encrypt(data.getBytes(StandardCharsets.UTF_8), algorithm)
+  def encrypt(data: String, algorithm: String): String = encrypt(data.getBytes(UTF_8), algorithm)
 
   def encrypt(data: Array[Byte], algorithm: String): String = {
     try {
       val cipher: Cipher = Cipher.getInstance(algorithm)
       cipher.init(Cipher.ENCRYPT_MODE, key, cipher.getParameters)
-      new String(Base64.encodeBase64(cipher.doFinal(data)), StandardCharsets.UTF_8)
+      BasicBase64.encodeString(cipher.doFinal(data))
     }
     catch {
       case e: Exception => throw new SecurityException("Failed encrypting data", e)

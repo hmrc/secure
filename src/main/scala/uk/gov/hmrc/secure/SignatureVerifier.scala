@@ -16,10 +16,9 @@
 
 package uk.gov.hmrc.secure
 
-import java.nio.charset.StandardCharsets
+import java.nio.charset.StandardCharsets.UTF_8
 import java.security._
 
-import org.apache.commons.codec.binary.Base64
 import uk.gov.hmrc.secure.Algorithm._
 
 class SignatureVerifier(val publicKey: PublicKey) {
@@ -28,8 +27,8 @@ class SignatureVerifier(val publicKey: PublicKey) {
     try {
       val sig = Signature.getInstance(algorithm.value())
       sig.initVerify(publicKey)
-      sig.update(data.getBytes(StandardCharsets.UTF_8))
-      sig.verify(Base64.decodeBase64(signature))
+      sig.update(data.getBytes(UTF_8))
+      sig.verify(BasicBase64.decode(signature))
     } catch {
       case nsae: NoSuchAlgorithmException => throw new SecurityException("Algorithm '" + algorithm.value() + "' is not supported", nsae)
       case ike: InvalidKeyException => throw new SecurityException("The private key is invalid", ike)

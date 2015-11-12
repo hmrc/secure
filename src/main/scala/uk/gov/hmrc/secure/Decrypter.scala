@@ -16,11 +16,8 @@
 
 package uk.gov.hmrc.secure
 
-import java.nio.charset.StandardCharsets
 import java.security.Key
 import javax.crypto.Cipher
-
-import org.apache.commons.codec.binary.Base64
 
 trait Decrypter {
 
@@ -42,7 +39,7 @@ trait Decrypter {
     try {
       val cipher: Cipher = Cipher.getInstance(algorithm)
       cipher.init(Cipher.DECRYPT_MODE, key, cipher.getParameters)
-      cipher.doFinal(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)))
+      cipher.doFinal(BasicBase64.decode(data))
     } catch {
       case e: Exception => throw new SecurityException("Failed decrypting data", e)
     }
