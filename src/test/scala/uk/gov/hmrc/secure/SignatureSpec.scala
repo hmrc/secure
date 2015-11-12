@@ -19,7 +19,6 @@ package uk.gov.hmrc.secure
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
-import org.apache.commons.codec.binary.Base64
 import org.scalatest.{Matchers, WordSpec}
 
 class SignatureSpec extends WordSpec with Matchers with KeyProvider {
@@ -47,7 +46,7 @@ class SignatureSpec extends WordSpec with Matchers with KeyProvider {
     val messageDigest = MessageDigest.getInstance("SHA-1")
     messageDigest.update(data.getBytes(StandardCharsets.UTF_8))
     val digest = messageDigest.digest
-    Base64.encodeBase64String(digest)
+    BasicBase64.encodeToString(digest)
   }
 
 }

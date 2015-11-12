@@ -28,7 +28,6 @@ object HmrcBuild extends Build {
     import Dependencies._
 
     Seq(
-      Compile.commonsCodec,
       Compile.bouncyCastle,
 
       Test.scalaTest,
@@ -53,7 +52,6 @@ object HmrcBuild extends Build {
 private object Dependencies {
 
   object Compile {
-    val commonsCodec = "commons-codec" % "commons-codec" % "1.8"
     val bouncyCastle = "org.bouncycastle" % "bcprov-jdk16" % "1.46"
   }
 

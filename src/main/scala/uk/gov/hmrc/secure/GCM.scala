@@ -29,7 +29,7 @@ import org.bouncycastle.crypto.params.AEADParameters
 object GCM {
 
   def encrypt(plaintext: Array[Byte], params: AEADParameters, outputOffset: Int): Array[Byte] = {
-    val gcm= new GCMBlockCipher(new AESEngine)
+    val gcm = new GCMBlockCipher(new AESEngine)
     gcm.init(true, params)
     val outsize = gcm.getOutputSize(plaintext.length)
     val out = new Array[Byte](outsize + outputOffset)
