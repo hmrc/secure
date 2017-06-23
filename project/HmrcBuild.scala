@@ -39,9 +39,9 @@ object HmrcBuild extends Build {
   lazy val secure = (project in file("."))
     .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
     .settings(
-      scalaVersion := "2.11.7",
+      scalaVersion := "2.12.2",
       libraryDependencies ++= appDependencies,
-      crossScalaVersions := Seq("2.11.7"),
+      crossScalaVersions := Seq("2.11.8", "2.12.2"),
       resolvers := Seq(
         Resolver.bintrayRepo("hmrc", "releases"),
         Resolver.typesafeRepo("releases")
@@ -58,8 +58,8 @@ private object Dependencies {
   }
 
   sealed abstract class Test(scope: String) {
-    val scalaTest = "org.scalatest" %% "scalatest" % "2.2.4" % scope
-    val pegdown = "org.pegdown" % "pegdown" % "1.5.0" % scope
+    val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % scope
+    val pegdown = "org.pegdown" % "pegdown" % "1.6.0" % scope
   }
 
   object Test extends Test("test")
