@@ -17,9 +17,8 @@
 package uk.gov.hmrc.secure
 
 import java.nio.charset.StandardCharsets
-import javax.crypto.spec.SecretKeySpec
 
-import org.bouncycastle.crypto.InvalidCipherTextException
+import javax.crypto.spec.SecretKeySpec
 import org.scalatest.{Matchers, WordSpec}
 
 class SymmetricSpec extends WordSpec with Matchers {
