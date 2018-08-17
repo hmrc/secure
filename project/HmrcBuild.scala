@@ -19,7 +19,6 @@ import sbt._
 
 object HmrcBuild extends Build {
 
-  import uk.gov.hmrc.DefaultBuildSettings._
   import uk.gov.hmrc.SbtAutoBuildPlugin
   import uk.gov.hmrc.versioning.SbtGitVersioning
 
