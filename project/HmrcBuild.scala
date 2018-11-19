@@ -53,7 +53,7 @@ private object Dependencies {
 
   object Compile {
     val commonsCodec = "commons-codec" % "commons-codec" % "1.8"
-    val bouncyCastle = "org.bouncycastle" % "bcprov-jdk15on" % "1.59"
+    val bouncyCastle = "org.bouncycastle" % "bcprov-jdk15on" % "1.60"
   }
 
   sealed abstract class Test(scope: String) {
