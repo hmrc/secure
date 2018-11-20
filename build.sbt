@@ -20,6 +20,7 @@ lazy val library = Project(appName, file("."))
     resolvers := Seq(
       Resolver.bintrayRepo("hmrc", "releases"),
       Resolver.typesafeRepo("releases")
-    )
+    ),
+    majorVersion := 7
   )
   .disablePlugins(sbt.plugins.JUnitXmlReportPlugin)
