@@ -12,11 +12,11 @@ val dependencies = Seq(
 )
 
 lazy val library = Project(appName, file("."))
-  .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning)
+  .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
   .settings(
-    scalaVersion := "2.12.2",
+    majorVersion := 7,
+    makePublicallyAvailableOnBintray := true,
     libraryDependencies ++= dependencies,
-    crossScalaVersions := Seq("2.11.8", "2.12.2"),
     resolvers := Seq(
       Resolver.bintrayRepo("hmrc", "releases"),
       Resolver.typesafeRepo("releases")
