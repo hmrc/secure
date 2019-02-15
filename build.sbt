@@ -14,6 +14,7 @@ val dependencies = Seq(
 lazy val library = Project(appName, file("."))
   .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
   .settings(
+    crossScalaVersions := Seq("2.12.8", "2.11.11"),
     majorVersion := 7,
     makePublicallyAvailableOnBintray := true,
     libraryDependencies ++= dependencies,
