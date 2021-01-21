@@ -1,6 +1,7 @@
 import sbt.Keys._
 import sbt._
 import uk.gov.hmrc.versioning.SbtGitVersioning
+import uk.gov.hmrc.SbtArtifactory
 
 val appName = "secure"
 
@@ -13,9 +14,10 @@ val dependencies = Seq(
 
 lazy val library = Project(appName, file("."))
   .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
+  .disablePlugins(JUnitXmlReportPlugin)
   .settings(
-    crossScalaVersions := Seq("2.12.8", "2.11.11"),
-    majorVersion := 7,
+    scalaVersion := "2.12.12",
+    majorVersion := 8,
     makePublicallyAvailableOnBintray := true,
     libraryDependencies ++= dependencies,
     resolvers := Seq(
@@ -23,4 +25,4 @@ lazy val library = Project(appName, file("."))
       Resolver.typesafeRepo("releases")
     )
   )
-  .disablePlugins(sbt.plugins.JUnitXmlReportPlugin)
+  .settings(resolvers += Resolver.jcenterRepo)
