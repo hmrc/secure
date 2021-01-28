@@ -19,9 +19,10 @@ package uk.gov.hmrc.secure
 import java.nio.charset.StandardCharsets
 
 import javax.crypto.spec.SecretKeySpec
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class SymmetricSpec extends WordSpec with Matchers {
+class SymmetricSpec extends AnyWordSpecLike with Matchers {
 
   "Symetric encrypter/decrypter" should {
 

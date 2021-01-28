@@ -19,11 +19,12 @@ package uk.gov.hmrc.secure
 import java.util
 import java.util.concurrent.CountDownLatch
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
 import scala.collection.mutable.ListBuffer
 
-class GCMConcurrencySpec extends WordSpec with Matchers {
+class GCMConcurrencySpec extends AnyWordSpecLike with Matchers {
 
   "GCM" should {
 

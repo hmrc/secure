@@ -20,12 +20,12 @@ import java.util
 
 import org.bouncycastle.crypto.params.{AEADParameters, KeyParameter}
 import org.bouncycastle.util.encoders.Base64
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class GCMEncrypterDecrypterSpec extends WordSpec with Matchers {
+class GCMEncrypterDecrypterSpec extends AnyWordSpecLike with Matchers {
 
   "GCMEncrypterDecrypter" should {
-
 
     "encrypt and decrypt without additional text" in {
       val encryptMessage = "data to encrypted!"

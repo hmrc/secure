@@ -6,10 +6,10 @@ import uk.gov.hmrc.SbtArtifactory
 val appName = "secure"
 
 val dependencies = Seq(
-  "commons-codec" % "commons-codec" % "1.8",
-  "org.bouncycastle" % "bcprov-jdk15on" % "1.60",
-  "org.scalatest" %% "scalatest"   % "3.0.1" % "test",
-  "org.pegdown"   %  "pegdown"     % "1.6.0" % "test"
+  "commons-codec"        %  "commons-codec"  % "1.15",
+  "org.bouncycastle"     %  "bcprov-jdk15on" % "1.68",
+  "org.scalatest"        %% "scalatest"      % "3.2.3"  % Test,
+  "com.vladsch.flexmark" %  "flexmark-all"   % "0.36.8" % Test,
 )
 
 lazy val library = Project(appName, file("."))

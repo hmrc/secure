@@ -22,9 +22,10 @@ import java.util
 
 import org.bouncycastle.crypto.InvalidCipherTextException
 import org.bouncycastle.crypto.params.{AEADParameters, KeyParameter}
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class GCMSpec extends WordSpec with Matchers {
+class GCMSpec extends AnyWordSpecLike with Matchers {
 
   private val rand = new SecureRandom
   private val keybytes = new Array[Byte](16 * 2)

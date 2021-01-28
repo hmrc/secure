@@ -21,9 +21,10 @@ import java.nio.charset.StandardCharsets
 import java.security.cert.{Certificate, CertificateFactory}
 import java.text.MessageFormat
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class CertificateVerifierSpec extends WordSpec with Matchers {
+class CertificateVerifierSpec extends AnyWordSpecLike with Matchers {
 
   "the verifier" should {
 
