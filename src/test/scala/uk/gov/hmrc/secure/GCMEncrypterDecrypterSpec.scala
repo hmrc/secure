@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ import java.util
 
 import org.bouncycastle.crypto.params.{AEADParameters, KeyParameter}
 import org.bouncycastle.util.encoders.Base64
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class GCMEncrypterDecrypterSpec extends WordSpec with Matchers {
+class GCMEncrypterDecrypterSpec extends AnyWordSpecLike with Matchers {
 
   "GCMEncrypterDecrypter" should {
-
 
     "encrypt and decrypt without additional text" in {
       val encryptMessage = "data to encrypted!"

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,10 @@ import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
 import org.apache.commons.codec.binary.Base64
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class SignatureSpec extends WordSpec with Matchers with KeyProvider {
+class SignatureSpec extends AnyWordSpecLike with Matchers with KeyProvider {
 
   "Signer" should {
 

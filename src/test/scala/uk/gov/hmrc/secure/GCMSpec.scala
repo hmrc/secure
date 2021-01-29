@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,10 @@ import java.util
 
 import org.bouncycastle.crypto.InvalidCipherTextException
 import org.bouncycastle.crypto.params.{AEADParameters, KeyParameter}
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class GCMSpec extends WordSpec with Matchers {
+class GCMSpec extends AnyWordSpecLike with Matchers {
 
   private val rand = new SecureRandom
   private val keybytes = new Array[Byte](16 * 2)

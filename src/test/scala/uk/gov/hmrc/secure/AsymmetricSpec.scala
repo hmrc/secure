@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,10 @@
 
 package uk.gov.hmrc.secure
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class AsymmetricSpec extends WordSpec with Matchers with KeyProvider {
+class AsymmetricSpec extends AnyWordSpecLike with Matchers with KeyProvider {
 
   private val original = "osidg9n  rg jt wtjwitu4549gv  p9 u243t  93t2ut34ijt g"
 

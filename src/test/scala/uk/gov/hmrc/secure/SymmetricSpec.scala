@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +19,10 @@ package uk.gov.hmrc.secure
 import java.nio.charset.StandardCharsets
 
 import javax.crypto.spec.SecretKeySpec
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
-class SymmetricSpec extends WordSpec with Matchers {
+class SymmetricSpec extends AnyWordSpecLike with Matchers {
 
   "Symetric encrypter/decrypter" should {
 

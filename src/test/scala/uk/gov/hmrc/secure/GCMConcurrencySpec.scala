@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 HM Revenue & Customs
+ * Copyright 2021 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,12 @@ package uk.gov.hmrc.secure
 import java.util
 import java.util.concurrent.CountDownLatch
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
 import scala.collection.mutable.ListBuffer
 
-class GCMConcurrencySpec extends WordSpec with Matchers {
+class GCMConcurrencySpec extends AnyWordSpecLike with Matchers {
 
   "GCM" should {
 
