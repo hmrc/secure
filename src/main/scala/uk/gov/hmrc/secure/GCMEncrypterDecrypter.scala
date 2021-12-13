@@ -29,7 +29,6 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
 
   import GCMEncrypterDecrypter._
 
-  private lazy val secureRNG = initSecureRNG()
   private lazy val keyParam: KeyParameter = new KeyParameter(key)
 
   def encrypt(data: Array[Byte]): String = {
@@ -68,6 +67,14 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
     if (associatedText == null) throw new IllegalStateException("There is no Associated Text!")
   }
 
+}
+
+object GCMEncrypterDecrypter {
+  final val MAC_SIZE = 128
+  final val NONCE_SIZE = MAC_SIZE / 8
+
+  private lazy val secureRNG = initSecureRNG()
+
   private def initSecureRNG(): SecureRandom = {
     var random: SecureRandom = null
     try {
@@ -82,9 +89,4 @@ class GCMEncrypterDecrypter(private val key: Array[Byte], private val associated
     random
   }
 
-}
-
-object GCMEncrypterDecrypter {
-  final val MAC_SIZE = 128
-  final val NONCE_SIZE = MAC_SIZE / 8
 }
