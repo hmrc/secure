@@ -1,7 +1,5 @@
 import sbt.Keys._
 import sbt._
-import uk.gov.hmrc.versioning.SbtGitVersioning
-import uk.gov.hmrc.SbtArtifactory
 
 val appName = "secure"
 
@@ -12,17 +10,17 @@ val dependencies = Seq(
   "com.vladsch.flexmark" %  "flexmark-all"   % "0.36.8" % Test,
 )
 
-lazy val library = Project(appName, file("."))
-  .enablePlugins(SbtAutoBuildPlugin, SbtGitVersioning, SbtArtifactory)
+val scala2_12 = "2.12.15"
+val scala2_13 = "2.13.7"
+
+lazy val library = Project("secure", file("."))
   .disablePlugins(JUnitXmlReportPlugin)
   .settings(
-    scalaVersion := "2.12.12",
+    scalaVersion := scala2_12,
+    crossScalaVersions := Seq(scala2_12, scala2_13),
     majorVersion := 8,
-    makePublicallyAvailableOnBintray := true,
+    isPublicArtefact := true,
     libraryDependencies ++= dependencies,
-    resolvers := Seq(
-      Resolver.bintrayRepo("hmrc", "releases"),
-      Resolver.typesafeRepo("releases")
-    )
+    resolvers += Resolver.typesafeRepo("releases")
   )
   .settings(resolvers += Resolver.jcenterRepo)
