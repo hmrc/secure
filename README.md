@@ -1,6 +1,10 @@
+[DEPRECATED]
+=
+*`secure` has been rolled into https://github.com/hmrc/crypto*
+
 # secure
 
-[![Build Status](https://travis-ci.org/hmrc/secure.svg)](https://travis-ci.org/hmrc/secure) [ ![Download](https://api.bintray.com/packages/hmrc/releases/secure/images/download.svg) ](https://bintray.com/hmrc/releases/secure/_latestVersion)
+![](https://img.shields.io/github/v/release/hmrc/secure)
 
 Simple library wrapping java security/crypto framework for encyption/decryption
 and signing/signature validation.
@@ -10,17 +14,11 @@ and signing/signature validation.
 Add the following to your SBT build:
 
 ```scala
-resolvers += Resolver.bintrayRepo("hmrc", "releases")
+resolvers += MavenRepository("HMRC-open-artefacts-maven2", "https://open.artefacts.tax.service.gov.uk/maven2")
 
 libraryDependencies += "uk.gov.hmrc" %% "secure" % "[INSERT-VERSION]"
 ```
 
-## Code Owners
-
-Please note that although Platform Security does not own this code, it is required
-to get peer review from Platform Security on changes made.
-
 ## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
-
